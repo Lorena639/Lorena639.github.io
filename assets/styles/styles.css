@@ -119,6 +119,25 @@ h2 {
     margin: 0 auto;
 }
 
+/* Estilos para el calendario FullCalendar */
+.fc-toolbar {
+    background-color: #9b66e6; /* Fondo morado para la barra del calendario */
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.fc-button {
+    background-color: #7f4ac4;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+.fc-button:hover {
+    background-color: #9b66e6;
+}
+
 /* Pie de página */
 footer {
     background-color: #9b66e6;

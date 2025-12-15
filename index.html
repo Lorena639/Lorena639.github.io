@@ -8,7 +8,14 @@
 
     <!-- FullCalendar - Librerías necesarias -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css" rel="stylesheet" />
+    
+    <!-- jQuery (necesario para FullCalendar) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <!-- FullCalendar JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
 </head>
 <body>
@@ -262,7 +269,18 @@
                     right: 'month,agendaWeek,agendaDay'
                 },
                 events: [
-                    // Puedes agregar eventos aquí si es necesario
+                    // Ejemplo de eventos que puedes agregar
+                    {
+                        title: 'Inicio del Primer Trimestre',
+                        start: '2025-09-01',
+                        description: 'Comienza el primer trimestre del ciclo.'
+                    },
+                    {
+                        title: 'Examen de Robótica',
+                        start: '2025-11-15',
+                        description: 'Examen final de la materia de Robótica.'
+                    }
+                    // Añadir más eventos aquí
                 ],
                 dayClick: function(date, jsEvent, view) {
                     var task = prompt("Añade una tarea o comentario para el día: " + date.format('YYYY-MM-DD'));
