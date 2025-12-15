@@ -1,0 +1,107 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f3f3; /* Fondo claro */
+    color: #333;
+}
+
+/* Contenedor */
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Encabezado */
+header {
+    background-color: #9b66e6; /* Lavanda claro */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+/* Barra de navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+/* Efecto de hover */
+nav ul li a:hover {
+    background-color: #7f4ac4; /* Cambio de color al pasar el ratón */
+    border-radius: 5px;
+}
+
+/* Secciones */
+section {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #9b66e6; /* Título de las secciones en morado */
+}
+
+/* Actualizaciones en la página de inicio */
+.update {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.update h3 {
+    color: #9b66e6;
+}
+
+.update a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.update a:hover {
+    text-decoration: underline;
+}
+
+/* Diseño de las materias y proyectos */
+.subject, .project {
+    background-color: #f3f3f3;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.project a, .subject a {
+    color: #9b66e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Pie de página */
+footer {
+    background-color: #9b66e6;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

@@ -3,10 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
+    <title>Mi Blog de Carrera</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
-    <h1>¡Bienvenido a mi página web!</h1>
-    <p>Este es un proyecto hospedado en GitHub Pages.</p>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <h1>Mi Blog de Carrera</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#internships">Mis Prácticas</a></li>
+                    <li><a href="#subjects">Materias</a></li>
+                    <li><a href="#projects">Trabajos Realizados</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección de Inicio (Actualizaciones) -->
+    <main>
+        <section id="home">
+            <h2>Últimas Actualizaciones</h2>
+            <div class="update">
+                <h3>Nuevo Proyecto de Ciberseguridad</h3>
+                <p>Acabo de implementar un firewall en un sistema para mejorar su seguridad...</p>
+                <a href="#">Ver más</a>
+            </div>
+            <div class="update">
+                <h3>Mi Experiencia en el Instituto</h3>
+                <p>Hoy aprendí mucho sobre la gestión de redes y la seguridad informática...</p>
+                <a href="#">Ver más</a>
+            </div>
+        </section>
+
+        <!-- Sección Mis Prácticas -->
+        <section id="internships">
+            <h2>Mis Prácticas</h2>
+            <p>Actualmente estoy realizando mis prácticas en una empresa de ciberseguridad...</p>
+            <a href="#">Ver más sobre mis prácticas</a>
+        </section>
+
+        <!-- Sección Materias -->
+        <section id="subjects">
+            <h2>Materias</h2>
+            <div class="subject">
+                <h3>Ciberseguridad</h3>
+                <p>En esta materia, aprendemos sobre redes, seguridad y gestión de amenazas...</p>
+                <a href="#">Ver trabajos relacionados</a>
+            </div>
+        </section>
+
+        <!-- Sección Trabajos Realizados -->
+        <section id="projects">
+            <h2>Trabajos Realizados</h2>
+            <div class="project">
+                <h3>Implementación de un Firewall</h3>
+                <p>Este proyecto consistió en implementar un firewall para proteger redes...</p>
+                <a href="#">Ver más detalles</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 Mi Blog de Carrera | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="assets/scripts/script.js"></script>
 </body>
 </html>
