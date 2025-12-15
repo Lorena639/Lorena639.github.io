@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f3f3f3; /* Fondo claro */
+    background-color: #f4f4f4; /* Fondo claro */
     color: #333;
 }
 
@@ -63,39 +63,25 @@ h2 {
     color: #9b66e6; /* Título de las secciones en morado */
 }
 
-/* Actualizaciones en la página de inicio */
-.update {
+/* Materias y Trabajos */
+.subject, .project {
     background-color: #f9f9f9;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
 }
 
-.update h3 {
+.subject h3, .project h3 {
     color: #9b66e6;
 }
 
-.update a {
+.subject a, .project a {
     color: #007bff;
     text-decoration: none;
 }
 
-.update a:hover {
+.subject a:hover, .project a:hover {
     text-decoration: underline;
-}
-
-/* Diseño de las materias y proyectos */
-.subject, .project {
-    background-color: #f3f3f3;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-}
-
-.project a, .subject a {
-    color: #9b66e6;
-    text-decoration: none;
-    font-weight: bold;
 }
 
 /* Pie de página */
