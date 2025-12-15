@@ -49,6 +49,10 @@
         <h2>Calendario Académico</h2>
         <p>Aquí podrás ver las fechas del calendario académico. Si deseas añadir algo para algún día, simplemente haz clic en la fecha y añade tus notas.</p>
         <div id="calendar-container"></div> <!-- Aquí se insertará el calendario -->
+        <h3>Tareas Añadidas:</h3>
+        <ul id="task-list">
+            <!-- Las tareas añadidas se mostrarán aquí -->
+        </ul>
     </section>
 
     <!-- Sección de Mis Prácticas -->
@@ -258,9 +262,12 @@
 
     <script src="assets/scripts/script.js"></script>
 
-    <!-- Script para FullCalendar -->
+<!-- Script para FullCalendar -->
     <script>
         $(document).ready(function() {
+            var events = [];
+
+            // Inicialización de FullCalendar
             $('#calendar-container').fullCalendar({
                 defaultView: 'month',
                 header: {
@@ -268,25 +275,27 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                events: [
-                    // Ejemplo de eventos que puedes agregar
-                    {
-                        title: 'Inicio del Primer Trimestre',
-                        start: '2025-09-01',
-                        description: 'Comienza el primer trimestre del ciclo.'
-                    },
-                    {
-                        title: 'Examen de Robótica',
-                        start: '2025-11-15',
-                        description: 'Examen final de la materia de Robótica.'
-                    }
-                    // Añadir más eventos aquí
-                ],
+                events: events,  // Cargar los eventos existentes (tareas)
+
+                // Acción al hacer clic en un día del calendario
                 dayClick: function(date, jsEvent, view) {
                     var task = prompt("Añade una tarea o comentario para el día: " + date.format('YYYY-MM-DD'));
                     if (task) {
-                        alert("Tarea para el día " + date.format('YYYY-MM-DD') + ": " + task);
-                        // Puedes agregar aquí código para guardar la tarea
+                        // Crear un nuevo evento para el día clicado
+                        var newEvent = {
+                            title: task,  // Título del evento es la tarea
+                            start: date.format(),  // Fecha del evento es el día clicado
+                            description: task  // La tarea es también la descripción del evento
+                        };
+
+                        // Agregar el evento a la lista de eventos
+                        events.push(newEvent);
+
+                        // Añadir el evento al calendario
+                        $('#calendar-container').fullCalendar('renderEvent', newEvent, true);
+
+                        // Añadir la tarea a la lista visible en la página
+                        $('#task-list').append('<li>' + date.format('YYYY-MM-DD') + ': ' + task + '</li>');
                     }
                 }
             });
