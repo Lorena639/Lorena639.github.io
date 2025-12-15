@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Fondo claro */
+    background-color: #f3f3f3; /* Fondo claro */
     color: #333;
 }
 
@@ -29,6 +29,7 @@ header h1 {
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 10px 0;
 }
 
 nav ul li {
@@ -44,7 +45,7 @@ nav ul li a {
     padding: 5px;
 }
 
-/* Efecto de hover */
+/* Efecto de hover en los enlaces del menú */
 nav ul li a:hover {
     background-color: #7f4ac4; /* Cambio de color al pasar el ratón */
     border-radius: 5px;
@@ -63,7 +64,7 @@ h2 {
     color: #9b66e6; /* Título de las secciones en morado */
 }
 
-/* Materias y Trabajos */
+/* Estilo de las materias */
 .subject, .project {
     background-color: #f9f9f9;
     padding: 15px;
@@ -82,6 +83,26 @@ h2 {
 
 .subject a:hover, .project a:hover {
     text-decoration: underline;
+}
+
+/* Detalles de cada materia */
+.subject-detail h4 {
+    margin-top: 20px;
+    color: #9b66e6;
+}
+
+.subject-detail p {
+    margin: 10px 0;
+}
+
+/* Estilo de los apartados de la materia */
+.subject-detail ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.subject-detail li {
+    margin-bottom: 10px;
 }
 
 /* Pie de página */
