@@ -138,6 +138,20 @@ h2 {
     background-color: #9b66e6;
 }
 
+/* Estilos de la lista de tareas */
+#task-list {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+#task-list li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 /* Pie de página */
 footer {
     background-color: #9b66e6;
