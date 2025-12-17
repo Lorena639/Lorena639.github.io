@@ -1,4 +1,4 @@
-/* Estilos generales */
+/* Estilos generales */ 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -30,10 +30,11 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 10px 0;
+    text-align: center; /* Centrado del menú */
 }
 
 nav ul li {
-    display: inline;
+    display: inline-block;
     margin: 0 15px;
 }
 
@@ -42,7 +43,8 @@ nav ul li a {
     text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
-    padding: 5px;
+    padding: 10px;
+    display: inline-block; /* Hacer el enlace un bloque para que el padding funcione */
 }
 
 /* Efecto de hover en los enlaces del menú */
@@ -58,6 +60,11 @@ section {
     margin: 20px 0;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Todas las secciones ocultas por defecto */
+}
+
+section:first-of-type {
+    display: block; /* Mostrar la primera sección (inicio) por defecto */
 }
 
 h2 {
@@ -158,4 +165,14 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+}
+
+/* Nuevo estilo para secciones ocultas */
+.nav-link {
+    cursor: pointer; /* Hacer el cursor un puntero para mejorar la experiencia */
+}
+
+/* Transición suave para las secciones */
+section {
+    transition: all 0.3s ease-in-out;
 }
