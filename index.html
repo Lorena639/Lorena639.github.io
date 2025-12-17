@@ -44,6 +44,7 @@
                     <li><a href="#subjects" class="nav-link">Materias</a></li>
                     <li><a href="#projects" class="nav-link">Trabajos Realizados</a></li>
                     <li><a href="#calendar" class="nav-link">Calendario</a></li>
+                    <li><a href="#diario" class="nav-link">Mi Día a Día</a></li>
                 </ul>
             </nav>
         </div>
@@ -161,6 +162,7 @@
             </div>
         </div>
 
+<!-- Esta es la primera parte del código. Ahora pasamos a la segunda parte. -->
         <!-- Materia 5: Inglés profesional -->
         <div class="subject">
             <h3><a href="#ingles">SMR - 0156. Inglés profesional</a></h3>
@@ -274,7 +276,7 @@
 
     <script src="assets/scripts/script.js"></script>
 
-<!-- Script para FullCalendar -->
+    <!-- Script para FullCalendar -->
     <script>
         $(document).ready(function() {
             var events = [];
@@ -316,23 +318,24 @@
 
     <!-- Configuración de Firebase -->
     <script>
-        // Configuración de Firebase (reemplaza estos valores con los de tu consola de Firebase)
-        var firebaseConfig = {
-            apiKey: "TU_API_KEY",  // Copia tu API key desde la consola de Firebase
-            authDomain: "TU_AUTH_DOMAIN",  // Copia tu authDomain
-            databaseURL: "TU_DATABASE_URL",  // Copia tu databaseURL
-            projectId: "TU_PROJECT_ID",  // Copia tu projectId
-            storageBucket: "TU_STORAGE_BUCKET",  // Copia tu storageBucket
-            messagingSenderId: "TU_MESSAGING_SENDER_ID",  // Copia tu messagingSenderId
-            appId: "TU_APP_ID"  // Copia tu appId
-        };
+        // Configuración de Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyCfdM2PscfkXWphTMnUTUe3jnXTGQbPQik",
+    authDomain: "blogcarrera.firebaseapp.com",
+    databaseURL: "https://blogcarrera-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "blogcarrera",
+    storageBucket: "blogcarrera.firebasestorage.app",
+    messagingSenderId: "772355897666",
+    appId: "1:772355897666:web:8b2d03a3dd64f3c3adf0db",
+    measurementId: "G-95947G1N3K"
+};
 
-        // Inicializa Firebase
-        firebase.initializeApp(firebaseConfig);
+// Inicializa Firebase
+firebase.initializeApp(firebaseConfig);
 
-        // Obtén la referencia de la base de datos y la autenticación
-        var database = firebase.database();
-        var auth = firebase.auth();
+// Obtén la referencia de la base de datos y la autenticación
+var database = firebase.database();
+var auth = firebase.auth();
 
         // Cargar las tareas desde Firebase
         function loadTasks() {
@@ -348,8 +351,23 @@
             });
         }
 
+        // Cargar las notas diarias desde Firebase
+        function loadDiaryEntries() {
+            database.ref("diary").on("value", function(snapshot) {
+                var entries = snapshot.val();
+                $("#diary-list").empty();  // Limpiar la lista de notas
+                for (var key in entries) {
+                    if (entries.hasOwnProperty(key)) {
+                        var entry = entries[key];
+                        $('#diary-list').append('<li>' + entry.timestamp + ': ' + entry.note + '</li>');
+                    }
+                }
+            });
+        }
+
         $(document).ready(function() {
             loadTasks();  // Cargar tareas cuando la página se carga
+            loadDiaryEntries();  // Cargar las entradas diarias
 
             // Configuración de FullCalendar
             $('#calendar-container').fullCalendar({
@@ -379,6 +397,25 @@
                     } else {
                         alert("Solo el administrador puede añadir tareas.");
                     }
+                }
+            });
+
+            // Agregar una nota diaria
+            $("#diary-form").submit(function(e) {
+                e.preventDefault();
+                var note = $("#diary-entry").val();
+                var timestamp = moment().format("YYYY-MM-DD HH:mm:ss");
+
+                if (note) {
+                    var newEntry = {
+                        timestamp: timestamp,
+                        note: note
+                    };
+
+                    // Guardar la entrada diaria en Firebase
+                    database.ref('diary').push(newEntry);
+                    loadDiaryEntries();  // Recargar entradas después de agregar
+                    $("#diary-entry").val("");  // Limpiar el campo de texto
                 }
             });
         });

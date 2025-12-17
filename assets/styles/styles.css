@@ -159,6 +159,38 @@ h2 {
     border-radius: 5px;
 }
 
+/* Sección Mi Día a Día */
+#diario {
+    margin-top: 30px;
+}
+
+#diario form {
+    margin-bottom: 20px;
+}
+
+#diary-entry {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+#diary-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#diary-list li {
+    background-color: #f1f1f1;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
 /* Pie de página */
 footer {
     background-color: #9b66e6;
