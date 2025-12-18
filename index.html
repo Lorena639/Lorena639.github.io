@@ -24,8 +24,250 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
 
     <style>
-        /* Esconde todas las secciones inicialmente */
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3; /* Fondo claro */
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Encabezado */
+        header {
+            background-color: #9b66e6; /* Lavanda claro */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+        }
+
+        /* Barra de navegación */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            text-align: center; /* Centrado del menú */
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            display: inline-block; /* Hacer el enlace un bloque para que el padding funcione */
+        }
+
+        /* Efecto de hover en los enlaces del menú */
+        nav ul li a:hover {
+            background-color: #7f4ac4; /* Cambio de color al pasar el ratón */
+            border-radius: 5px;
+        }
+
+        /* Secciones */
         section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Todas las secciones ocultas por defecto */
+        }
+
+        section:first-of-type {
+            display: block; /* Mostrar la primera sección (inicio) por defecto */
+        }
+
+        h2 {
+            color: #9b66e6; /* Título de las secciones en morado */
+        }
+
+        /* Estilo de las materias */
+        .subject, .project {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .subject h3, .project h3 {
+            color: #9b66e6;
+        }
+
+        .subject a, .project a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .subject a:hover, .project a:hover {
+            text-decoration: underline;
+        }
+
+        /* Detalles de cada materia */
+        .subject-detail h4 {
+            margin-top: 20px;
+            color: #9b66e6;
+        }
+
+        .subject-detail p {
+            margin: 10px 0;
+        }
+
+        /* Estilo de los apartados de la materia */
+        .subject-detail ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .subject-detail li {
+            margin-bottom: 10px;
+        }
+
+        /* Calendario */
+        #calendar-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        #calendar {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Estilos para el calendario FullCalendar */
+        .fc-toolbar {
+            background-color: #9b66e6; /* Fondo morado para la barra del calendario */
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .fc-button {
+            background-color: #7f4ac4;
+            color: white;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .fc-button:hover {
+            background-color: #9b66e6;
+        }
+
+        /* Estilos de la lista de tareas */
+        #task-list {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        #task-list li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            background-color: #f1f1f1;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Sección Mi Día a Día */
+        #diario {
+            margin-top: 30px;
+        }
+
+        #diario form {
+            margin-bottom: 20px;
+        }
+
+        #diary-entry {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        #diary-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #diary-list li {
+            background-color: #f1f1f1;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #9b66e6;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Nuevo estilo para secciones ocultas */
+        .nav-link {
+            cursor: pointer; /* Hacer el cursor un puntero para mejorar la experiencia */
+        }
+
+        /* Transición suave para las secciones */
+        section {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Estilo para el formulario de inicio de sesión */
+        #login-section {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #login-section input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #login-section button {
+            padding: 10px 20px;
+            background-color: #9b66e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #login-section button:hover {
+            background-color: #7f4ac4;
+        }
+
+        #login-error {
+            color: red;
             display: none;
         }
     </style>
@@ -45,6 +287,7 @@
                     <li><a href="#projects" class="nav-link">Trabajos Realizados</a></li>
                     <li><a href="#calendar" class="nav-link">Calendario</a></li>
                     <li><a href="#diario" class="nav-link">Mi Día a Día</a></li>
+                    <li><a href="#" class="nav-link" onclick="showLogin()">Iniciar sesión</a></li>
                 </ul>
             </nav>
         </div>
@@ -53,14 +296,21 @@
     <!-- Sección de Inicio -->
     <section id="home">
         <h2>Bienvenidos a mi Blog de Carrera</h2>
-        <p>¡Hola! Me llamo **Antonia Lorena Cracana**, tengo 23 años y estoy empezando el ciclo medio en informática. Aunque es "tarde" comparado con otras personas, lo hago con mucha **pasión** y **ganas de aprender**. Aquí compartiré mi día a día, mis logros y también las dificultades que encuentre en el camino.</p>
-        <p>Mi objetivo es documentar y aprender de cada paso que dé, y quiero que este blog sea un reflejo de mi esfuerzo. Compartiré mis experiencias, proyectos y las cosas que aprenda en cada materia.</p>
+        <p>¡Hola! Me llamo **Antonia Lorena Cracana**, tengo 23 años y estoy empezando el ciclo medio en informática...</p>
     </section>
+
+    <!-- Modal de Inicio de Sesión -->
+    <div id="login-section" style="display: none;">
+        <h3>Iniciar sesión</h3>
+        <input type="email" id="email" placeholder="Correo electrónico" />
+        <input type="password" id="password" placeholder="Contraseña" />
+        <button onclick="login()">Iniciar sesión</button>
+        <p id="login-error">Credenciales incorrectas. Intenta nuevamente.</p>
+    </div>
 
     <!-- Sección Calendario -->
     <section id="calendar">
         <h2>Calendario Académico</h2>
-        <p>Aquí podrás ver las fechas del calendario académico. Si deseas añadir algo para algún día, simplemente haz clic en la fecha y añade tus notas.</p>
         <div id="calendar-container"></div> <!-- Aquí se insertará el calendario -->
         <h3>Tareas Añadidas:</h3>
         <ul id="task-list">
@@ -68,276 +318,136 @@
         </ul>
     </section>
 
-    <!-- Sección de Mis Prácticas -->
-    <section id="internships">
-        <h2>Mis Prácticas</h2>
-        <p>Actualmente estoy realizando mis prácticas en una empresa de ciberseguridad. Aunque soy de ciclo medio, las tareas son avanzadas para mí, lo que me permite aprender rápidamente. Aquí comparto lo que hago en las prácticas.</p>
-        <p><strong>Ejemplo de tarea realizada:</strong> Implementación de un firewall para proteger las redes internas de la empresa. A medida que avance, iré subiendo más detalles sobre las tareas y cómo las abordo.</p>
-        <a href="#">Ver más sobre mis prácticas</a>
-    </section>
-
-    <!-- Sección Sobre Mí -->
-    <section id="about">
-        <h2>Sobre mí</h2>
-        <p>Hola, soy **Antonia Lorena Cracana**. Tengo 23 años y actualmente estudio el ciclo de informática en **Digitech Barcelona**. Este blog tiene como objetivo documentar mi experiencia y aprendizaje a lo largo de mi carrera, incluyendo los proyectos que realizo en mis prácticas y clases. A través de este espacio, espero compartir mis conocimientos y ayudar a otros en su camino educativo.</p>
-    </section>
-
     <!-- Sección Materias -->
     <section id="subjects">
         <h2>Materias</h2>
-
-        <!-- Materia 1: Informática aplicada a Sistemas Electrónicos (Robótica) y Programación en Python -->
+        <!-- Materia 1 -->
         <div class="subject">
-            <h3><a href="#smr-robotica">SMR - Informática aplicada a Sistemas Electrónicos (Robótica) y Programación en Python</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>En esta materia, aprendemos a programar en Python y cómo aplicar estos conocimientos a la robótica. Se incluyen tareas prácticas sobre la programación de robots y la integración de sensores.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Proyecto: Control de un robot móvil usando Python y sensores de distancia.</li>
-                    <li>Proyecto: Desarrollo de un programa en Python para simular el movimiento de un brazo robótico.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Examen parcial sobre fundamentos de robótica: 80%</p>
-                <p>Nota final esperada: 90%</p>
-            </div>
+            <h3>SMR - Informática aplicada a Sistemas Electrónicos (Robótica) y Programación en Python</h3>
+            <p>En esta materia, aprendemos a programar en Python y cómo aplicar estos conocimientos a la robótica...</p>
         </div>
 
-        <!-- Materia 2: Itinerario personal a la ocupabilidad I -->
+        <!-- Materia 2 -->
         <div class="subject">
-            <h3><a href="#itinerari-ocupabilitat">SMR - 1709. Itinerario personal a la ocupabilidad I</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>Esta materia está diseñada para ayudar a los estudiantes a crear un plan personalizado para su futura carrera profesional, enfocado en el empleo en el sector tecnológico.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Elaboración de un plan de carrera profesional.</li>
-                    <li>Investigación sobre empresas del sector tecnológico y sus requisitos laborales.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Trabajo final sobre el desarrollo del plan de carrera: 85%</p>
-                <p>Nota final esperada: 88%</p>
-            </div>
+            <h3>SMR - 1709. Itinerario personal a la ocupabilidad I</h3>
+            <p>Esta materia está diseñada para ayudar a los estudiantes a crear un plan personalizado para su futura carrera profesional...</p>
         </div>
 
-        <!-- Materia 3: Sostenibilidad aplicada al sistema productivo -->
+        <!-- Materia 3 -->
         <div class="subject">
-            <h3><a href="#sostenibilidad">SMR - 1708. Sostenibilidad aplicada al sistema productivo</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>En esta materia estudiamos cómo implementar principios de sostenibilidad dentro de los procesos productivos, buscando minimizar el impacto ambiental.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Análisis del ciclo de vida de un producto tecnológico.</li>
-                    <li>Desarrollo de un plan de sostenibilidad para una fábrica.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Examen teórico sobre conceptos de sostenibilidad: 90%</p>
-                <p>Nota final esperada: 85%</p>
-            </div>
+            <h3>SMR - 1708. Sostenibilidad aplicada al sistema productivo</h3>
+            <p>En esta materia estudiamos cómo implementar principios de sostenibilidad dentro de los procesos productivos...</p>
         </div>
 
-        <!-- Materia 4: Digitalización aplicada a los sectores productivos -->
+        <!-- Materia 4 -->
         <div class="subject">
-            <h3><a href="#digitalizacion">SMR - 1664. Digitalización aplicada a los sectores productivos</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>Estudiamos cómo la digitalización puede optimizar los procesos en diversas industrias, un área clave en el futuro cercano.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Implementación de herramientas digitales para mejorar la producción en línea.</li>
-                    <li>Desarrollo de soluciones digitales para la gestión de inventarios.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Evaluación de proyectos prácticos: 92%</p>
-                <p>Nota final esperada: 88%</p>
-            </div>
+            <h3>SMR - 1664. Digitalización aplicada a los sectores productivos</h3>
+            <p>Estudiamos cómo la digitalización puede optimizar los procesos en diversas industrias...</p>
         </div>
 
-<!-- Esta es la primera parte del código. Ahora pasamos a la segunda parte. -->
-        <!-- Materia 5: Inglés profesional -->
+        <!-- Materia 5 -->
         <div class="subject">
-            <h3><a href="#ingles">SMR - 0156. Inglés profesional</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>Curso de inglés orientado a la comprensión de textos técnicos y comunicación profesional en el ámbito informático.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Redacción de un informe técnico en inglés.</li>
-                    <li>Presentación de un proyecto en inglés sobre tecnologías emergentes.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Examen oral sobre comprensión de textos técnicos: 88%</p>
-                <p>Nota final esperada: 90%</p>
-            </div>
+            <h3>SMR - 0156. Inglés profesional</h3>
+            <p>Curso de inglés orientado a la comprensión de textos técnicos y comunicación profesional...</p>
         </div>
 
-        <!-- Materia 6: Redes locales -->
+        <!-- Materia 6 -->
         <div class="subject">
-            <h3><a href="#xarxes">SMR - 0225. Redes locales</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>En esta materia aprendemos a configurar y gestionar redes locales, un aspecto fundamental en cualquier empresa.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Instalación y configuración de una red LAN.</li>
-                    <li>Solución de problemas de conectividad en redes locales.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Examen práctico de configuración de redes: 85%</p>
-                <p>Nota final esperada: 80%</p>
-            </div>
+            <h3>SMR - 0225. Redes locales</h3>
+            <p>En esta materia aprendemos a configurar y gestionar redes locales...</p>
         </div>
 
-        <!-- Materia 7: Aplicaciones ofimáticas -->
+        <!-- Materia 7 -->
         <div class="subject">
-            <h3><a href="#aplicacions">SMR - 0223. Aplicaciones ofimáticas</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>Aplicaciones y herramientas ofimáticas esenciales para el manejo de documentos y presentaciones.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Creación de presentaciones profesionales en PowerPoint.</li>
-                    <li>Redacción de informes y uso avanzado de Excel.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Evaluación sobre el uso de herramientas ofimáticas: 95%</p>
-                <p>Nota final esperada: 93%</p>
-            </div>
+            <h3>SMR - 0223. Aplicaciones ofimáticas</h3>
+            <p>Aplicaciones y herramientas ofimáticas esenciales para el manejo de documentos y presentaciones...</p>
         </div>
 
-        <!-- Materia 8: Sistemas operativos monousuario -->
+        <!-- Materia 8 -->
         <div class="subject">
-            <h3><a href="#sistemes-operatius">SMR - 0222. Sistemas operativos monousuario</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>Estudio de los sistemas operativos que se utilizan en máquinas individuales, enfocándonos en la instalación y gestión.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Instalación y configuración de un sistema operativo Linux.</li>
-                    <li>Gestión de permisos y usuarios en sistemas monousuario.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Examen de instalación y configuración de sistemas: 80%</p>
-                <p>Nota final esperada: 87%</p>
-            </div>
+            <h3>SMR - 0222. Sistemas operativos monousuario</h3>
+            <p>Estudio de los sistemas operativos que se utilizan en máquinas individuales...</p>
         </div>
 
-        <!-- Materia 9: Montaje y mantenimiento de equipos -->
+        <!-- Materia 9 -->
         <div class="subject">
-            <h3><a href="#muntatge">SMR - 0221. Montaje y mantenimiento de equipos</a></h3>
-            <div class="subject-detail">
-                <h4>Descripción</h4>
-                <p>Materia enfocada en el montaje y mantenimiento de equipos informáticos, esencial para un técnico de soporte.</p>
-
-                <h4>Trabajos Realizados</h4>
-                <ul>
-                    <li>Montaje y diagnóstico de problemas en equipos informáticos.</li>
-                    <li>Reemplazo de piezas y actualización de hardware en estaciones de trabajo.</li>
-                </ul>
-
-                <h4>Notas/Exámenes</h4>
-                <p>Evaluación práctica de montaje y diagnóstico: 90%</p>
-                <p>Nota final esperada: 85%</p>
-            </div>
+            <h3>SMR - 0221. Montaje y mantenimiento de equipos</h3>
+            <p>Materia enfocada en el montaje y mantenimiento de equipos informáticos...</p>
         </div>
     </section>
 
-    <!-- Sección Trabajos Realizados -->
+    <!-- Sección de Trabajos Realizados -->
     <section id="projects">
         <h2>Trabajos Realizados</h2>
         <div class="project">
             <h3>Implementación de un Firewall</h3>
-            <p>Este proyecto consistió en implementar un firewall para proteger redes internas y evitar accesos no autorizados. Fue una de mis primeras experiencias reales en el campo de la ciberseguridad.</p>
-            <a href="#">Ver más detalles</a>
+            <p>Este proyecto consistió en implementar un firewall para proteger redes internas...</p>
         </div>
     </section>
 
-    <!-- Pie de página -->
+    <!-- Sección Mi Día a Día -->
+    <section id="diario">
+        <h2>Mi Día a Día</h2>
+        <button id="add-post-btn">Añadir Post</button>
+
+        <!-- Formulario para añadir un post -->
+        <div id="post-form" style="display: none;">
+            <textarea id="post-content" placeholder="Escribe tu post aquí..." rows="4"></textarea>
+            <button id="submit-post-btn">Añadir Post</button>
+            <button id="cancel-post-btn">Cancelar</button>
+        </div>
+
+        <!-- Lista de posts añadidos -->
+        <ul id="diary-list">
+            <!-- Los posts se mostrarán aquí -->
+        </ul>
+    </section>
+
     <footer>
         <p>&copy; 2025 Mi Blog de Carrera | Todos los derechos reservados</p>
     </footer>
 
     <script src="assets/scripts/script.js"></script>
 
-    <!-- Script para FullCalendar -->
+    <!-- Firebase Configuración -->
     <script>
-        $(document).ready(function() {
-            var events = [];
+        var firebaseConfig = {
+            apiKey: "AIzaSyCfdM2PscfkXWphTMnUTUe3jnXTGQbPQik",
+            authDomain: "blogcarrera.firebaseapp.com",
+            databaseURL: "https://blogcarrera-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "blogcarrera",
+            storageBucket: "blogcarrera.firebasestorage.app",
+            messagingSenderId: "772355897666",
+            appId: "1:772355897666:web:8b2d03a3dd64f3c3adf0db",
+            measurementId: "G-95947G1N3K"
+        };
 
-            // Inicialización de FullCalendar
-            $('#calendar-container').fullCalendar({
-                defaultView: 'month',
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                events: events,  // Cargar los eventos existentes (tareas)
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+        var auth = firebase.auth();
 
-                // Acción al hacer clic en un día del calendario
-                dayClick: function(date, jsEvent, view) {
-                    var task = prompt("Añade una tarea o comentario para el día: " + date.format('YYYY-MM-DD'));
-                    if (task) {
-                        // Crear un nuevo evento para el día clicado
-                        var newEvent = {
-                            title: task,  // Título del evento es la tarea
-                            start: date.format(),  // Fecha del evento es el día clicado
-                            description: task  // La tarea es también la descripción del evento
-                        };
+        // Mostrar la ventana de login
+        function showLogin() {
+            document.getElementById('login-section').style.display = 'block';
+            $("section").hide(); // Oculta las demás secciones
+        }
 
-                        // Agregar el evento a la lista de eventos
-                        events.push(newEvent);
+        // Iniciar sesión
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-                        // Añadir el evento al calendario
-                        $('#calendar-container').fullCalendar('renderEvent', newEvent, true);
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    document.getElementById('login-section').style.display = 'none';
+                    loadTasks();
+                })
+                .catch((error) => {
+                    document.getElementById('login-error').style.display = 'block';
+                });
+        }
 
-                        // Añadir la tarea a la lista visible en la página
-                        $('#task-list').append('<li>' + date.format('YYYY-MM-DD') + ': ' + task + '</li>');
-                    }
-                }
-            });
-        });
-    </script>
-
-    <!-- Configuración de Firebase -->
-    <script>
-        // Configuración de Firebase
-var firebaseConfig = {
-    apiKey: "AIzaSyCfdM2PscfkXWphTMnUTUe3jnXTGQbPQik",
-    authDomain: "blogcarrera.firebaseapp.com",
-    databaseURL: "https://blogcarrera-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "blogcarrera",
-    storageBucket: "blogcarrera.firebasestorage.app",
-    messagingSenderId: "772355897666",
-    appId: "1:772355897666:web:8b2d03a3dd64f3c3adf0db",
-    measurementId: "G-95947G1N3K"
-};
-
-// Inicializa Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Obtén la referencia de la base de datos y la autenticación
-var database = firebase.database();
-var auth = firebase.auth();
-
-        // Cargar las tareas desde Firebase
+        // Cargar las tareas del calendario desde Firebase
         function loadTasks() {
             database.ref("tasks").on("value", function(snapshot) {
                 var tasks = snapshot.val();
@@ -351,89 +461,63 @@ var auth = firebase.auth();
             });
         }
 
-        // Cargar las notas diarias desde Firebase
+        // Cargar los posts del diario desde Firebase
         function loadDiaryEntries() {
             database.ref("diary").on("value", function(snapshot) {
                 var entries = snapshot.val();
-                $("#diary-list").empty();  // Limpiar la lista de notas
+                $("#diary-list").empty(); // Limpiar la lista de posts
+
                 for (var key in entries) {
                     if (entries.hasOwnProperty(key)) {
                         var entry = entries[key];
-                        $('#diary-list').append('<li>' + entry.timestamp + ': ' + entry.note + '</li>');
+                        $('#diary-list').append('<li><strong>' + entry.timestamp + ':</strong> ' + entry.content + '</li>');
                     }
                 }
             });
         }
 
         $(document).ready(function() {
-            loadTasks();  // Cargar tareas cuando la página se carga
-            loadDiaryEntries();  // Cargar las entradas diarias
+            loadDiaryEntries(); // Cargar posts al cargar la página
 
-            // Configuración de FullCalendar
-            $('#calendar-container').fullCalendar({
-                defaultView: 'month',
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                events: [],
-
-                // Acción al hacer clic en un día del calendario
-                dayClick: function(date, jsEvent, view) {
-                    // Verificar si el usuario está autenticado (solo tú puedes modificar las tareas)
-                    if (auth.currentUser && auth.currentUser.uid === "yFF5AeSIlDWfBFump2KMgq1rOIx1") {
-                        var task = prompt("Añade una tarea o comentario para el día: " + date.format('YYYY-MM-DD'));
-                        if (task) {
-                            var newTask = {
-                                date: date.format('YYYY-MM-DD'),
-                                description: task
-                            };
-
-                            // Guardar la tarea en Firebase
-                            database.ref('tasks').push(newTask);
-                            loadTasks();  // Recargar tareas después de agregar
-                        }
-                    } else {
-                        alert("Solo el administrador puede añadir tareas.");
-                    }
-                }
+            // Añadir post
+            $("#add-post-btn").click(function() {
+                $("#post-form").show();
+                $("#add-post-btn").hide();
             });
 
-            // Agregar una nota diaria
-            $("#diary-form").submit(function(e) {
-                e.preventDefault();
-                var note = $("#diary-entry").val();
-                var timestamp = moment().format("YYYY-MM-DD HH:mm:ss");
+            // Cancelar post
+            $("#cancel-post-btn").click(function() {
+                $("#post-form").hide();
+                $("#add-post-btn").show();
+            });
 
-                if (note) {
-                    var newEntry = {
-                        timestamp: timestamp,
-                        note: note
+            // Enviar post
+            $("#submit-post-btn").click(function() {
+                var postContent = $("#post-content").val();
+                if (postContent.trim() !== "") {
+                    var newPost = {
+                        timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+                        content: postContent
                     };
 
-                    // Guardar la entrada diaria en Firebase
-                    database.ref('diary').push(newEntry);
-                    loadDiaryEntries();  // Recargar entradas después de agregar
-                    $("#diary-entry").val("");  // Limpiar el campo de texto
+                    database.ref('diary').push(newPost)
+                        .then(function() {
+                            loadDiaryEntries();
+                            $("#post-form").hide();
+                            $("#add-post-btn").show();
+                            $("#post-content").val("");
+                        })
+                        .catch(function(error) {
+                            console.log("Error al guardar el post: ", error);
+                        });
                 }
             });
-        });
-    </script>
 
-    <!-- Script para ocultar/mostrar secciones -->
-    <script>
-        $(document).ready(function(){
-            // Mostrar la sección correspondiente al hacer clic en un enlace de navegación
             $(".nav-link").click(function(e) {
                 e.preventDefault();
                 var target = $(this).attr("href"); // Obtén el ID del enlace
-
-                // Ocultar todas las secciones
-                $("section").hide();
-
-                // Mostrar la sección correspondiente
-                $(target).show();
+                $("section").hide(); // Ocultar todas las secciones
+                $(target).show(); // Mostrar la sección correspondiente
             });
         });
     </script>
